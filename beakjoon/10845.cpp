@@ -35,7 +35,7 @@ int main() {
 		else if (cmd == "back") {
 			if (q.empty()) { cout << -1 << '\n';continue; }
 			cout << q.back() << '\n';
-		}
+		}ss
 		
 	}
 	return 0;
