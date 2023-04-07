@@ -1,40 +1,27 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
-int main() {
-	long long n;
-	cin >> n;
+int main(){
+	int n;
+	cin>>n;
+	vector <long long> distance(n-1);
+	vector <long long> cost(n);
 
-	vector <long long> dis;
-	long long distance;
-	for (long long i = 0; i < n - 1; i++) {
-		cin >> distance;
-		dis.push_back(distance);
+	for(int i=0;i<n-1;i++){
+		cin>>distance[i];
+	}
+	for(int i=0;i<n;i++){
+		cin>>cost[i];
 	}
 
-	vector <long long> oil;
-	long long oil_;
-	for (long long i = 0; i < n; i++) {
-		cin >> oil_;
-		oil.push_back(oil_);
-	}
-
-	long long totalprice=0;
-	for (long long i = 0; i < n-1; i++) {
-		long long totaldis = dis[i];
-		long long j;
-		for (j = i+1; j < n-1; j++) {
-			if (oil[i] <= oil[j]) {
-				totaldis += dis[j];
-			}
-			else {
-				break;
-			}
+	long long sum=cost[0]*distance[0];
+	long long mincost=cost[0];
+	for(int i=1;i<n-1;i++){
+		if(mincost>cost[i]){
+			mincost=cost[i];
 		}
-		totalprice += oil[i] * totaldis;
-		i = j-1;
+		sum+=mincost * distance[i];
 	}
-
-	cout << totalprice;
+	cout<<sum;
 	return 0;
 }
