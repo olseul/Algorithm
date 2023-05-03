@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str[5];
+
+    for (int i = 0; i < 5; i++) {
+        cin >> str[i];
+        str[i].resize(15, ' '); 
+    }
+
+    for (int i = 0; i < 15; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (str[j][i] != ' ') { 
+                cout << str[j][i];
+            }
+        }
+    }
+
+    return 0;
+}
