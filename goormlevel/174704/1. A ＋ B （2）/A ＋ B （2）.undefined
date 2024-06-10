@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+input_num = input().split()
+A = input_num[0]
+B = input_num[1]
+
+num = float(A) + float(B)
+
+print (f"{num:.6f}")
