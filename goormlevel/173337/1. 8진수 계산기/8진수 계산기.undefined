@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+n = int(input())
+v = list(map(int, input().split()))
+
+v_sum = 0
+for i in range(n):
+	v_sum += v[i]
+
+stack = []
+
+while True: 
+	if v_sum // 8 == 0:
+		stack.append(v_sum % 8)
+		break
+	else:
+		stack.append(v_sum % 8)
+		v_sum //= 8
+
+result = ""
+for i in range(len(stack)):
+	result += str(stack.pop())
+
+print(result)
