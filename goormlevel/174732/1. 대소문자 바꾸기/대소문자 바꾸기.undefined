@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N = input()
+S = input() # 문자열을 변경할 수 없음..아이고 이런 걸 까먹냐
+
+new = ""
+for char in S:
+	if char.isupper():
+		new += char.lower()
+	else:
+		new += char.upper()
+print (new)
