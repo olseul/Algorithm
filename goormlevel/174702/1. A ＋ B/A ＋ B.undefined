@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+user_input = input().split()
+A = int(user_input[0])
+B = int(user_input[1])
+
+print (A+B)
