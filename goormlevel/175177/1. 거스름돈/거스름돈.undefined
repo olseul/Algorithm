@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+n = int(input())
+money = [40,20,10,5,1]
+num = 0
+for i in range(len(money)):
+	num += n // money[i]
+	n %= money[i]
+print (num)
