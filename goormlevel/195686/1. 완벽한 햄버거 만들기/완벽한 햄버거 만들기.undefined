@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N = int(input())
+K = list(map(int, input().split()))
+
+maxNum = max(K)
+max_idx = K.index(max(K))
+
+ascending = K[:max_idx+1]
+descending = K[max_idx:]
+
+result_1 = True
+for i in range(len(ascending)-1):
+	if ascending[i] > ascending[i+1]:
+		result_1 = False
+		break
+	
+result_2 = True
+for i in range(len(descending)-1):
+	if(descending[i] < descending[i+1]):
+		result_2 = False
+		break
+	
+if result_1 and result_2:
+	print(sum(K))
+else:
+	print(0)
+		
