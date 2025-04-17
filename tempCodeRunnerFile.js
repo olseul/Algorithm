@@ -1,9 +1,25 @@
-const fs = require("fs");
-const n = +fs.readFileSync("./input.txt").toString().trim();
+Cn의 함수를 만든다 파라미터는 (a와 b){
+//   a!/(a-b)!b! 이런 공식이니까
 
-let fibo = [0n, 1n];
-for (let i = 2; i <= n; i++) {
-  fibo[i] = fibo[i - 1] + fibo[i - 2];
-}
+//   우선 a!를 구하는 공식은..
 
-console.log(fibo[n]);
+//   for(let i=1; i<=a; i++){
+//     다 곱한거
+//   }
+//   결과1
+
+//   (a-b)!를 구하는 공식은..
+//   for(let i=1; i<=(a-b); i++){
+//     다 곱한거
+//   }
+//   결과2
+
+//   b!를 구하는 공식은..
+//   for(let i=1; i<=b; i++){
+//     다 곱한거
+//   }
+//   결과3
+
+//   return 결과1/결과2*결과3
+
+// }
