@@ -22,17 +22,18 @@ function dfs(value) {
     if (!visited[next]) {
       count += 1;
       if (next == b) {
-        console.log("결과" + count);
+        console.log(count);
         return true;
       }
       if (dfs(next)) {
         return true;
       }
+      count -= 1;
     }
   }
   return false;
 }
 
 if (!dfs(a)) {
-  return -1;
+  console.log(-1);
 }
