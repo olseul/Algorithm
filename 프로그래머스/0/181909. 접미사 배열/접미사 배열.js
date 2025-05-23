@@ -1,8 +1,9 @@
 function solution(my_string) {
-    var answer = [];
-    for(let i =0;i<my_string.length;i++){
-        answer.push(my_string.slice(my_string.length - 1 - i));
+    let arr = [...my_string];
+    let result = [my_string];
+    for(let i = 0; i<my_string.length-1; i++){
+        arr.shift();
+        result.push(arr.join(''));
     }
-    answer.sort(); //이게 사전순으로 정렬
-    return answer;
+    return result.sort();
 }
