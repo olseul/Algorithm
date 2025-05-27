@@ -1,8 +1,7 @@
 function solution(arr) {
-    if(!arr.includes(2)) return [-1];
+    const first = arr.indexOf(2);
+    const last = arr.lastIndexOf(2);
     
-    let start = arr.indexOf(2);
-    let end = arr.lastIndexOf(2);
-    
-    return arr.slice(start, end + 1);
+    if(first == -1){return [-1]}
+    return arr.slice(first, last + 1);
 }
