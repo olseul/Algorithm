@@ -1,31 +1,45 @@
-function upright(s){
-    let stack = [];
-    for(let i = 0; i<s.length; i++){
-        if(s[i] == ")"){
-            if(stack.pop() != "("){
-                return false;
-            }
-        }else if(s[i] == "}"){
-            if(stack.pop() != "{"){
-                return false;
-            }
-        }else if(s[i] == "]"){
-            if(stack.pop() != "["){
-                return false;
-            }
-        }else{
-            stack.push(s[i]);   
-        }
-    }
-    return stack.length ? false : true;
-}
 function solution(s) {
-    let result = 0;
+    let arr = s.split('');
+    let cnt = 0;
+    
     for(let i = 0; i<s.length; i++){
-        s = s.slice(1) + s.slice(0, 1);
-        if(upright(s)){
-            result += 1;
+        let stack = [];
+        //arr 조인한게 올바른 문자열인지 확인
+        let correct = true;
+        for(let j = 0; j<s.length; j++){
+            let last = stack[stack.length - 1];
+            if(arr[j] == "{" || arr[j] == "("|| arr[j] == "["){
+                stack.push(arr[j]);
+            }else if(arr[j] == "}"){
+                if(last == "{"){
+                    stack.pop();
+                }else{
+                    correct = false;
+                    break;
+                }
+            }else if(arr[j] == ")"){
+                if(last == "("){
+                    stack.pop();
+                }else{
+                    correct = false;
+                    break;
+                }
+            }else if(arr[j] == "]"){
+                if(last == "["){
+                    stack.pop();
+                }else{
+                    correct = false;
+                    break;
+                }
+            }
         }
+        if(correct && stack.length == 0){
+            cnt += 1;
+        }
+        
+        // 왼쪽으로 옮기는 코드
+        let last = arr.pop();
+        arr.unshift(last);
     }
-    return result;
+    return cnt;
 }
