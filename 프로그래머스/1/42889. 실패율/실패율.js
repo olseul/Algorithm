@@ -1,20 +1,30 @@
 function solution(N, stages) {
-    let dic = {};
-    for(let i = 1; i<= N; i++){
-        let deno = 0;
-        let num = 0;
-        for(let j = 0; j<stages.length; j++){
-            if(stages[j] == i){
-                num += 1;
-            }else if(stages[j] >= i){
-                deno += 1;
+    let arr = []; // 실패율
+    for(let i=0; i<N; i++){
+        arr.push(i+1);
+    }
+    
+    let obj = {};
+    
+    stages.forEach(a=>{
+        obj[a] = (obj[a] || 0) + 1;
+    })
+    
+    let result = arr.map(a=>{
+        let clear = 0;
+        let noclear = 0;
+        for(let [key, val] of Object.entries(obj)){
+            if(+key > a){
+                clear += val;
+            }else if(+key == a){
+                noclear += val;
             }
         }
-        dic[i] = num/deno;
-    }
-    let sorted = Object.entries(dic).sort(([,a], [,b]) =>(b - a));
-    for(let i = 0; i < N; i++){
-        sorted[i] = parseInt(sorted[i][0]);
-    }
-    return sorted;
+        let fail = noclear/clear;
+        return [a, fail];
+    })
+    let answer = result.sort((a,b) => b[1] - a[1]).map(a=>a[0]);
+    return answer
+    
+    
 }
