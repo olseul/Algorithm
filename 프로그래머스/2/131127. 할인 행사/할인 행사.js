@@ -1,25 +1,28 @@
 function solution(want, number, discount) {
-    let dic = {};
-    let result = 0;
-    for(let i = 0; i<=discount.length-10; i++){ // 시작 지점
-        dic = {};
-        for(let j = 0; j < 10; j++){
-            if(dic[discount[i+j]] == undefined){
-                dic[discount[i+j]] = 1;
-            }else{
-                dic[discount[i+j]] += 1;
-            }
-        }
-        let po = true;
-        for(let j in want){
-            if(dic[want[j]] != number[j]){
-                po = false;
+    let map = new Map();
+    want.forEach((a,idx)=>{
+        map.set(a, number[idx]);
+    })
+    
+    let cnt = 0;
+    for(let i=0; i<=discount.length -10; i++){
+        let ten = new Map();
+        let arr = discount.slice(i, i+10);
+        arr.forEach((a, idx)=>{
+            ten.set(a, (ten.get(a) || 0) + 1);
+        })
+
+        let eq = true;
+        for(let [key, value] of ten){
+            if(map.get(key) !== value){
+                eq = false;
                 break;
             }
         }
-        if(po == true){
-            result += 1;
+        if(eq){
+            cnt += 1;
         }
+        ten.clear()
     }
-    return result;
+    return cnt;
 }
