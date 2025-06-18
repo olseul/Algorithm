@@ -1,34 +1,63 @@
 function solution(dartResult) {
+    let str = ['S', 'T', 'D'];
+    let arr = dartResult.split('');
+    let tmp = "";
     let result = [];
-    let dic = {
-        'S' : 1,
-        'D' : 2,
-        'T' : 3,
-    }
-    for(let i = 0; i<dartResult.length; i++){
-        if(isNaN(dartResult[i])){
-            if(dartResult[i] == '*'){
-                let num1 = result.pop();
-                if(result.length != 0){
-                    let num2 = result.pop();
-                    result.push(num2 * 2);
-                }
-                result.push(num1 * 2);
-            }else if(dartResult[i] == '#'){
-                let num = result.pop();
-                result.push(num * -1);
-            }else{
-                let num = result.pop();
-                result.push(Math.pow(num, dic[dartResult[i]]));
-            }
+    for(let i=0; i<arr.length; i++){
+        let n = arr[i];
+        if(!str.includes(n)){
+            tmp += n;
         }else{
-            if(!isNaN(dartResult[i+1])){
-                result.push(10);
+            tmp += n;
+            let next = arr[i + 1];
+            if(next == '*' || next == '#'){
+                tmp += next;
                 i+=1;
-            }else{
-                result.push(parseInt(dartResult[i]));
             }
+            result.push(tmp);
+            tmp = ""
         }
     }
-    return result.reduce((acc, cur)=> acc + cur, 0);
+    if(tmp !== "") result.push(tmp);
+    const obj = {
+        'S' : (x) => x**1,
+        'D' : (x) => x**2,
+        'T' : (x) => x**3,
+    }
+    let scores = [];
+    result.forEach((a,idx)=>{
+        let arr = a.split('');
+        let tmp = "";
+        let answer = [];
+        for(let i=0; i<arr.length; i++){
+            if(!isNaN(arr[i])){
+                tmp += arr[i]
+            }else{
+                if(arr[i] == 'S' || arr[i] == 'D' || arr[i] == 'T'){
+                    answer.push(+tmp);
+                    answer.push(arr[i]);
+                    tmp = "";
+                }else{
+                    answer.push(arr[i])
+                    tmp = ""
+                }
+            }
+        }
+        let bonus = answer[1];
+        let score = answer[0];
+        
+        let num = obj[bonus](score);
+        if(answer[2] == '*'){
+            if(idx-1 >= 0){
+                scores[idx-1] *= 2;
+            }
+            num *= 2;
+        }else if(answer[2] == '#'){
+            num *= -1;
+        }
+        scores.push(num)
+    })
+    return scores.reduce((acc, cur)=>{
+        return acc + cur;
+    }, 0)
 }
