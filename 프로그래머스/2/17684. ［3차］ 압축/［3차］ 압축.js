@@ -15,7 +15,7 @@ function solution(msg) {
                 result.push(map.get(ex));
                 // 수정된 부분!
                 if (j + 1 < arr.length) {
-                    map.set(ex + arr[j + 1], nextIndex++);
+                    map.set(ex + arr[j + 1], map.size +1);
                 }
 
                 i+=ex.length - 1;
